@@ -1,0 +1,13 @@
+#element{
+	transition: background 0.1s;
+	-moz-transition: background 0.1s;
+	-webkit-transition: background 0.1s;
+	-o-transition: background 0.1s;
+	background: #CCC;
+	width: 100px;
+	height: 100px;
+}
+
+#element.on{
+	background: #000;
+}
