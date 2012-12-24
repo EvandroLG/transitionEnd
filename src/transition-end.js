@@ -30,8 +30,6 @@
 		this.element = element instanceof $ ? element[0] : element;
 		this.transitionEnd = this.whichTransitionEnd();
 		this.event = new Event(this.element, this.transitionEnd);
-
-		this.bind();
 	};
 
 	TransitionEnd.prototype = {
@@ -59,16 +57,8 @@
 			this.event.remove();
 		}
 	};
-	
-	var cache = {};
 
 	window.transitionEnd = function(element){
-		var isCached = cache.transitionEnd;
-
-		if(!isCached){
-			cache.transitionEnd = new TransitionEnd(element);
-		}
-
-		return cache.transitionEnd;
+		return new TransitionEnd(element);
 	};
 }(jQuery, window));

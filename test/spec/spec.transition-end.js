@@ -1,7 +1,6 @@
 describe('transition-end', function(){
 	beforeEach(function(){
 		var that = this;
-		this.mustKill = true;
 
 		var createElement = (function(){
 			$('body').append('<div id="element"></div>');
@@ -14,12 +13,10 @@ describe('transition-end', function(){
 		var that = this;
 			
 		var killElement = (function(){
-			if(that.mustKill){
-				that.jQueryElement.remove();
-			
-				delete that.jQueryElement;
-				delete that.DOMElement;
-			}
+			that.jQueryElement.remove();
+		
+			delete that.jQueryElement;
+			delete that.DOMElement;
 		}());
 	});
 
@@ -70,16 +67,32 @@ describe('transition-end', function(){
 			expect(transition.unbind).toHaveBeenCalled();
 		});
 
-		it('should exist function whichTransition into the transitionEnd', function(){
+		it('should exist function whichTransitionEnd into the transitionEnd', function(){
 			var transition = transitionEnd(this.DOMElement);
-			spyOn(transition, 'whichTransition');
-			transition.whichTransition();
+			spyOn(transition, 'whichTransitionEnd');
+			transition.whichTransitionEnd();
 
-			expect(transition.whichTransition).toHaveBeenCalled();
+			expect(transition.whichTransitionEnd).toHaveBeenCalled();
 		});
 	});
 
-	describe('event', function(){
-		it('should call function passed in bind after the execution of a transition', function(){});
+	describe('event', function(){		
+		describe('with dom element', function(){
+			it('should call function passed in bind after the execution of a transition', function(){
+				var callback = jasmine.createSpy();
+				transitionEnd(this.DOMElement).bind(callback);
+				var that = this;
+
+				setTimeout(function(){
+					that.DOMElement.className = 'on';
+				}, 100);
+
+				waits(500);
+
+				runs(function(){
+					expect(callback).toHaveBeenCalled();
+				});
+			});
+		})
 	});
 });
