@@ -1,9 +1,10 @@
 /*
   * TransitionEnd
+  * author: Evandro Leopoldino Gonçalves <evandrolgoncalves@gmail.com>
   * https://github.com/evandrolg
   * License: MIT
 */
-(function($, window){
+(function(window){
 	'use strict';
 
 	var Event = function(element, type){
@@ -26,8 +27,8 @@
 		if(!element){
 			throw 'You need to pass an element as parameter!';
 		}
-		
-		this.element = element instanceof $ ? element[0] : element;
+
+		this.element = element;
 		this.transitionEnd = this.whichTransitionEnd();
 		this.event = new Event(this.element, this.transitionEnd);
 	};
@@ -58,7 +59,28 @@
 		}
 	};
 
-	window.transitionEnd = function(element){
-		return new TransitionEnd(element);
+	var Cache = {
+		list: [],
+
+		insert: function(element){
+			var positonElement = this.list.indexOf(element);
+			var isCached = positonElement !== -1;
+
+			if(!isCached){
+				this.list.push(element);
+				this.list.push(new TransitionEnd(element));
+
+				positonElement = this.list.indexOf(element);
+			}
+
+			return this.list[positonElement+1];
+		}
 	};
-}(jQuery, window));
+
+	window.transitionEnd = function(el){
+		var element = el[0] || el;
+		var instance = Cache.insert(element);
+
+		return instance;
+	};
+}(window));

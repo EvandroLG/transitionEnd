@@ -76,23 +76,40 @@ describe('transition-end', function(){
 		});
 	});
 
-	describe('event', function(){		
-		describe('with dom element', function(){
-			it('should call function passed in bind after the execution of a transition', function(){
+	describe('event', function(){
+		beforeEach(function(){
+			this.verify = function(element, hasUnbind){
 				var callback = jasmine.createSpy();
-				transitionEnd(this.DOMElement).bind(callback);
-				var that = this;
+				transitionEnd(element).bind(callback);
+				
+				if(hasUnbind){
+					transitionEnd(element).unbind();
+				}
 
 				setTimeout(function(){
-					that.DOMElement.className = 'on';
+					element.className = 'on';
 				}, 100);
 
 				waits(500);
 
 				runs(function(){
-					expect(callback).toHaveBeenCalled();
+					if(hasUnbind){
+						expect(callback).not.toHaveBeenCalled();
+					}else{
+						expect(callback).toHaveBeenCalled();
+					}
 				});
-			});
-		})
+			};
+		});
+
+		it('should call function passed in bind after the execution of a transition', function(){
+			this.verify(this.DOMElement, false);
+			this.verify(this.jQueryElement, false);
+		});
+		
+		it('should disassociate event listener called when the method unbind', function(){
+			this.verify(this.DOMElement, true);
+			this.verify(this.jQueryElement, true);
+		});
 	});
 });
