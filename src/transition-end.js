@@ -61,9 +61,23 @@
 
 	var Cache = {
 		list: [],
+		
+		getPosition: function(element){
+			if(Array.prototype.indexOf){
+				return this.list.indexOf(element);
+			}
+
+			for(var i = 0, size = this.list.length; i < size; i++){
+				if(this.list[i] === element){
+					return i;
+				} 
+			}
+
+			return -1;
+		},
 
 		insert: function(element){
-			var positonElement = this.list.indexOf(element);
+			var positonElement = this.getPosition(element);
 			var isCached = positonElement !== -1;
 
 			if(!isCached){
