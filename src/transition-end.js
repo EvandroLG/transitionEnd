@@ -24,10 +24,6 @@
 	};
 
 	var TransitionEnd = function(element){
-		if(!element){
-			throw 'You need to pass an element as parameter!';
-		}
-
 		this.element = element;
 		this.transitionEnd = this.whichTransitionEnd();
 		this.event = new Event(this.element, this.transitionEnd);
@@ -92,6 +88,10 @@
 	};
 
 	window.transitionEnd = function(el){
+		if(!el){
+			throw 'You need to pass an element as parameter!';
+		}
+
 		var element = el[0] || el;
 		var instance = Cache.insert(element);
 
