@@ -1,4 +1,4 @@
-# TransitionEnd - a simple lib to work with event transitionend
+# TransitionEnd
 TransitionEnd is a agnostic lib cross-browser to work with event transitionend.
 
 ## Methods
