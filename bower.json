@@ -12,7 +12,8 @@
     "js"
   ],
   "ignore": [
-    "**/.*"
+    "**/.*",
+    "test"
   ],
   "license": "MIT"
 }
