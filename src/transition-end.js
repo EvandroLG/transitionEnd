@@ -80,7 +80,7 @@
 				this.list.push(element);
 				this.list.push(new TransitionEnd(element));
 
-				positonElement = this.list.indexOf(element);
+				positonElement = this.getPosition(element);
 			}
 
 			return this.list[positonElement+1];
