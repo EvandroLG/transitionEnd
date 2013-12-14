@@ -4,6 +4,7 @@
   * https://github.com/evandrolg
   * License: MIT
 */
+
 (function(window){
 	'use strict';
 
