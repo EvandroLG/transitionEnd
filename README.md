@@ -1,5 +1,5 @@
 # TransitionEnd
-TransitionEnd is a agnostic lib cross-browser to work with event transitionend.
+TransitionEnd is an agnostic and cross-browser library to work with event transitionend.
 
 ## Methods
 * transitionEnd(element).<code>bind(callback)</code>
