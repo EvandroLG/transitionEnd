@@ -12,7 +12,7 @@ var box = $("#box"); // or document.getElementById("box")
 var foo = $("#foo");
 
 transitionEnd(box).bind(function(){
-	$("#foo").addClass("on");
+	foo.addClass("on");
 	transitionEnd(box).unbind();
 });
 
