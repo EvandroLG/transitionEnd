@@ -1,4 +1,6 @@
 # TransitionEnd
+[![Build
+Status](https://travis-ci.org/EvandroLG/transitionEnd.svg?branch=master)
 TransitionEnd is an agnostic and cross-browser library to work with event transitionend.
 
 ## Methods
