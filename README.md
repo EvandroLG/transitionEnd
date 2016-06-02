@@ -22,6 +22,8 @@ Or Bower too:
   bower install transitionEnd
 ```
 
+Or simply pick up the file from src directory.
+
 ## Methods
 * transitionEnd(element).<code>bind(callback)</code>
 * transitionEnd(element).<code>unbind()</code>
