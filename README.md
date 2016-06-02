@@ -13,6 +13,18 @@ TransitionEnd is an agnostic and cross-browser library to work with event transi
 --- | --- | --- | --- | --- |
 1.0+ ✔ | 4.0+ ✔ | 10+ ✔ | 10.5 ✔ | 3.2+ ✔ |
 
+## Installation
+To install Selecting, execute:
+
+```shell
+  npm install transitionEnd
+```
+
+Or Bower too:
+```shell
+  bower install transitionEnd
+```
+
 ## Methods
 * transitionEnd(element).<code>bind(callback)</code>
 * transitionEnd(element).<code>unbind()</code>
