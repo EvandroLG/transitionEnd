@@ -32,10 +32,10 @@
     TransitionEnd.prototype = {
         whichTransitionEnd: function(){
             var transitions = {
+                'transition'       : 'transitionend',
                 'WebkitTransition' : 'webkitTransitionEnd',
                 'MozTransition'    : 'transitionend',
-                'OTransition'      : 'oTransitionEnd otransitionend',
-                'transition'       : 'transitionend'
+                'OTransition'      : 'oTransitionEnd otransitionend'
             };
 
             for(var t in transitions){
