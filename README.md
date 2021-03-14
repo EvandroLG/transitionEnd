@@ -29,7 +29,7 @@ Or simply pick up the file from src directory.
 * transitionEnd(element).<code>unbind()</code>
 * transitionEnd(element).<code>whichTransitionEnd()</code>
 
-# How does it work?
+## How does it work?
 ```js
 var box = $("#box"); // or document.getElementById("box")
 var foo = $("#foo");
