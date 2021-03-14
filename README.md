@@ -6,7 +6,7 @@ TransitionEnd is an agnostic and cross-browser library to work with event transi
 
 ## Browser Support
 
-<img src="./images/chrome.png" width="42" height="42" alt="chrome"> | <img src="./images/firefox.png" width="42" height="42"> | ![IE](./images/ie.png =42x42) | ![Opera](./images/opera.png =42x42) | ![Safari](./images/safari.png =42x42)
+<img src="./images/chrome.png" width="42" alt="Chrome"> | <img src="./images/firefox.png" width="42" alt="Firefox"> | !<img src="./images/ie.png" width="42" alt="Internet Explorer"> | <img src="./images/opera.png" width="42" alt="Opera"> | <img src="./images/safari.png" width="42">
 --- | --- | --- | --- | --- |
 1.0+ ✔ | 4.0+ ✔ | 10+ ✔ | 10.5 ✔ | 3.2+ ✔ |
 
