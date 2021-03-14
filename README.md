@@ -6,7 +6,7 @@ TransitionEnd is an agnostic and cross-browser library to work with event transi
 
 ## Browser Support
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
+![Chrome](./images/chrome.png =42x42) | ![Firefox](./images/firefox.png =42x42) | ![IE](./images/ie.png =42x42) | ![Opera](./images/opera.png =42x42) | ![Safari](./images/safari.png =42x42)
 --- | --- | --- | --- | --- |
 1.0+ ✔ | 4.0+ ✔ | 10+ ✔ | 10.5 ✔ | 3.2+ ✔ |
 
@@ -29,7 +29,7 @@ Or simply pick up the file from src directory.
 * transitionEnd(element).<code>unbind()</code>
 * transitionEnd(element).<code>whichTransitionEnd()</code>
 
-**Examples**
+# How does it work?
 ```js
 var box = $("#box"); // or document.getElementById("box")
 var foo = $("#foo");
