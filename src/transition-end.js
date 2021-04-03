@@ -4,96 +4,96 @@
   * https://github.com/evandrolg
   * License: MIT
 */
-(function(window){
-    'use strict';
+(function (global) {
+  'use strict';
 
-    var Event = function(element, type){
-        this.element = element;
-        this.type = type;
-    };
+  var Event = function (element, type) {
+    this.element = element;
+    this.type = type;
+  };
 
-    Event.prototype = {
-        add: function(callback){
-            this.callback = callback;
-            this.element.addEventListener(this.type, this.callback, false);
-        },
+  Event.prototype = {
+    add: function (callback) {
+      this.callback = callback;
+      this.element.addEventListener(this.type, this.callback, false);
+    },
 
-        remove: function(){
-            this.element.removeEventListener(this.type, this.callback, false);
+    remove: function () {
+      this.element.removeEventListener(this.type, this.callback, false);
+    }
+  };
+
+  var TransitionEnd = function (element) {
+    this.element = element;
+    this.transitionEnd = this.whichTransitionEnd();
+    this.event = new Event(this.element, this.transitionEnd);
+  };
+
+  TransitionEnd.prototype = {
+    whichTransitionEnd: function () {
+      var transitions = {
+        'transition': 'transitionend',
+        'WebkitTransition': 'webkitTransitionEnd',
+        'MozTransition': 'transitionend',
+        'OTransition': 'oTransitionEnd otransitionend'
+      };
+
+      for (var t in transitions) {
+        if (this.element.style[t] !== undefined) {
+          return transitions[t];
         }
-    };
+      }
+    },
 
-    var TransitionEnd = function(element){
-        this.element = element;
-        this.transitionEnd = this.whichTransitionEnd();
-        this.event = new Event(this.element, this.transitionEnd);
-    };
+    bind: function (callback) {
+      this.event.add(callback);
+    },
 
-    TransitionEnd.prototype = {
-        whichTransitionEnd: function(){
-            var transitions = {
-                'transition'       : 'transitionend',
-                'WebkitTransition' : 'webkitTransitionEnd',
-                'MozTransition'    : 'transitionend',
-                'OTransition'      : 'oTransitionEnd otransitionend'
-            };
+    unbind: function () {
+      this.event.remove();
+    }
+  };
 
-            for(var t in transitions){
-                if(this.element.style[t] !== undefined){
-                    return transitions[t];
-                }
-            }
-        },
+  var Cache = {
+    list: [],
 
-        bind: function(callback){
-            this.event.add(callback);
-        },
+    getPosition: function (element) {
+      if (Array.prototype.indexOf) {
+        return this.list.indexOf(element);
+      }
 
-        unbind: function(){
-            this.event.remove();
+      for (var i = 0, size = this.list.length; i < size; i++) {
+        if (this.list[i] === element) {
+          return i;
         }
-    };
+      }
 
-    var Cache = {
-        list: [],
-        
-        getPosition: function(element){
-            if(Array.prototype.indexOf){
-                return this.list.indexOf(element);
-            }
+      return -1;
+    },
 
-            for(var i = 0, size = this.list.length; i < size; i++){
-                if(this.list[i] === element){
-                    return i;
-                } 
-            }
+    insert: function (element) {
+      var positonElement = this.getPosition(element);
+      var isCached = positonElement !== -1;
 
-            return -1;
-        },
+      if (!isCached) {
+        this.list.push(element);
+        this.list.push(new TransitionEnd(element));
 
-        insert: function(element){
-            var positonElement = this.getPosition(element);
-            var isCached = positonElement !== -1;
+        positonElement = this.getPosition(element);
+      }
 
-            if(!isCached){
-                this.list.push(element);
-                this.list.push(new TransitionEnd(element));
+      return this.list[positonElement + 1];
+    }
+  };
 
-                positonElement = this.getPosition(element);
-            }
+  global.transitionEnd = function (el) {
+    if (!el) {
+      throw '`transitionEnd` expects to receive a DOM element';
+    }
 
-            return this.list[positonElement+1];
-        }
-    };
+    var element = el[0] || el;
+    var instance = Cache.insert(element);
 
-    window.transitionEnd = function(el){
-        if(!el){
-            throw 'You need to pass an element as parameter!';
-        }
-
-        var element = el[0] || el;
-        var instance = Cache.insert(element);
-
-        return instance;
-    };
+    return instance;
+  };
 }(window));
