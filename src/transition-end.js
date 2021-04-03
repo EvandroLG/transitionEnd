@@ -14,7 +14,7 @@
 
     remove: function () {
       this.element.removeEventListener(this.type, this.callback, false);
-    }
+    },
   };
 
   var TransitionEnd = function (element) {
@@ -31,10 +31,10 @@
       }
 
       var transitions = {
-        'transition': 'transitionend',
-        'WebkitTransition': 'webkitTransitionEnd',
-        'MozTransition': 'transitionend',
-        'OTransition': 'oTransitionEnd otransitionend'
+        transition: 'transitionend',
+        WebkitTransition: 'webkitTransitionEnd',
+        MozTransition: 'transitionend',
+        OTransition: 'oTransitionEnd otransitionend',
       };
 
       for (var t in transitions) {
@@ -51,7 +51,7 @@
 
     unbind: function () {
       this.event.remove();
-    }
+    },
   };
 
   global.transitionEnd = function (el) {
@@ -61,4 +61,4 @@
 
     return new TransitionEnd(el[0] || el);
   };
-}(window));
+})(window);

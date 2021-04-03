@@ -5,7 +5,8 @@
   "version": "1.0.2",
   "main": "src/transition-end.js",
   "scripts": {
-    "lint": "eslint src/transition-end.js",
+    "prettiefy": "prettier -w ./src/transition-end.js",
+    "lint": "eslint ./src/transition-end.js",
     "minify": "uglifyjs src/transition-end.js --compress --mangle --output src/transition-end.min.js"
   },
   "keywords": [
