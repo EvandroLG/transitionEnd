@@ -29,8 +29,13 @@
     this.event = new Event(this.element, this.transitionEnd);
   };
 
+  var memo = null;
   TransitionEnd.prototype = {
     whichTransitionEnd: function () {
+      if (memo) {
+        return memo;
+      }
+
       var transitions = {
         'transition': 'transitionend',
         'WebkitTransition': 'webkitTransitionEnd',
@@ -40,7 +45,8 @@
 
       for (var t in transitions) {
         if (this.element.style[t] !== undefined) {
-          return transitions[t];
+          memo = transitions[t];
+          return memo;
         }
       }
     },
@@ -54,46 +60,11 @@
     }
   };
 
-  var Cache = {
-    list: [],
-
-    getPosition: function (element) {
-      if (Array.prototype.indexOf) {
-        return this.list.indexOf(element);
-      }
-
-      for (var i = 0, size = this.list.length; i < size; i++) {
-        if (this.list[i] === element) {
-          return i;
-        }
-      }
-
-      return -1;
-    },
-
-    insert: function (element) {
-      var positonElement = this.getPosition(element);
-      var isCached = positonElement !== -1;
-
-      if (!isCached) {
-        this.list.push(element);
-        this.list.push(new TransitionEnd(element));
-
-        positonElement = this.getPosition(element);
-      }
-
-      return this.list[positonElement + 1];
-    }
-  };
-
   global.transitionEnd = function (el) {
     if (!el) {
       throw '`transitionEnd` expects to receive a DOM element';
     }
 
-    var element = el[0] || el;
-    var instance = Cache.insert(element);
-
-    return instance;
+    return new TransitionEnd(el[0] || el);
   };
 }(window));
