@@ -2,7 +2,7 @@
   "name": "transitionEnd",
   "author": "evandrolg",
   "repository": "evandrolg/transitionEnd",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "src/transition-end.js",
   "scripts": {
     "prettiefy": "prettier -w ./src/transition-end.js",
