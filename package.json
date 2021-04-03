@@ -4,11 +4,21 @@
   "repository": "evandrolg/transitionEnd",
   "version": "1.0.2",
   "main": "src/transition-end.js",
-  "keywords": ["transitionEnd", "event", "js", "front-end", "manipulation"],
+  "scripts": {
+    "lint": "eslint src/transition-end.js",
+    "minify": "uglifyjs src/transition-end.js --compress --mangle --output src/transition-end.min.js"
+  },
+  "keywords": [
+    "transitionEnd",
+    "event",
+    "js",
+    "front-end",
+    "manipulation"
+  ],
   "Licence": "MIT",
-
   "devDependencies": {
-    "uglify-js": "^2.4.16",
-    "jshint": "^2.5.x"
+    "eslint": "^7.23.0",
+    "prettier": "^2.2.1",
+    "uglify-js": "^3.13.3"
   }
 }
