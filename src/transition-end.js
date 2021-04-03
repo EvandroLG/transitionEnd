@@ -1,9 +1,3 @@
-/*
-  * TransitionEnd
-  * author: Evandro Leopoldino Gonçalves <evandrolgoncalves@gmail.com>
-  * https://github.com/evandrolg
-  * License: MIT
-*/
 (function (global) {
   'use strict';
 
