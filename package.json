@@ -18,7 +18,7 @@
   ],
   "Licence": "MIT",
   "devDependencies": {
-    "eslint": "^7.23.0",
+    "eslint": "^9.39.1",
     "prettier": "^2.2.1",
     "uglify-js": "^3.13.3"
   }
